@@ -1,0 +1,52 @@
+---
+interface Props {
+    images: { src: string; width: number; height: number; alt: string }[];
+}
+const { images } = Astro.props;
+---
+
+<div class="gallery" data-photoswipe-gallery>
+    {images.map((img) => (
+        <a
+            href={img.src}
+            data-pswp-width={img.width}
+            data-pswp-height={img.height}
+        >
+            <img src={img.src} alt={img.alt} loading="lazy" />
+        </a>
+    ))}
+</div>
+
+<script>
+    import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import "photoswipe/style.css";
+
+    document.querySelectorAll<HTMLElement>("[data-photoswipe-gallery]").forEach((gallery) => {
+        const lightbox = new PhotoSwipeLightbox({
+            gallery,
+            children: "a",
+            padding: { top: 16, bottom: 16, left: 0, right: 0 },
+            pswpModule: () => import("photoswipe"),
+        });
+        lightbox.init();
+    });
+</script>
+
+<style>
+    .gallery {
+        columns: 15rem;
+        column-gap: 1rem;
+        margin: 0;
+        padding: 1rem;
+    }
+    .gallery a {
+        display: block;
+        break-inside: avoid;
+        margin-bottom: 1rem;
+    }
+    .gallery img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>

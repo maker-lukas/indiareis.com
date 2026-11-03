@@ -1,0 +1,23 @@
+.hand {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 20px solid transparent;
+  border-image-source: url("/frame-2.png");
+  border-image-slice: 15 fill;
+  border-image-width: 15px;
+  border-image-repeat: stretch;
+  background: transparent;
+
+  transition: transform 100ms ease;
+}
+
+.hand:active {
+    transform: scale(0.95);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}

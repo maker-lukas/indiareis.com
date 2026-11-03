@@ -1,0 +1,17 @@
+---
+import type { Artwork} from '../data/artworks';
+
+interface Props {
+    artwork: Artwork;
+}
+
+const { artwork } = Astro.props;
+---
+
+<li>
+    <article>
+        <img src={artwork.image} alt={artwork.alt} loading="lazy" />
+        <p>{artwork.title}</p>
+        <p>{artwork.category} · {artwork.year}</p>
+    </article>
+</li>

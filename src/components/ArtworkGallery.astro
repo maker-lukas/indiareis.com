@@ -1,0 +1,19 @@
+---
+import type { Artwork } from '../data/artworks';
+import Gallery from './Gallery.astro';
+
+interface Props {
+  artworks: Artwork[];
+}
+
+const { artworks } = Astro.props;
+---
+
+<Gallery
+  images={artworks.map(({ image, width, height, alt }) => ({
+    src: image,
+    width,
+    height,
+    alt,
+  }))}
+/>
