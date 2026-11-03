@@ -27,6 +27,7 @@ const { images } = Astro.props;
             children: "a",
             padding: { top: 16, bottom: 16, left: 0, right: 0 },
             pswpModule: () => import("photoswipe"),
+            secondaryZoomLevel: 1.5,
         });
         lightbox.init();
     });
@@ -49,4 +50,49 @@ const { images } = Astro.props;
         width: 100%;
         height: auto;
     }
-</style>
+
+    :global(.pswp .pswp__button.pswp__button--close) {
+        background-image: url("/Close.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+    }
+
+    :global(.pswp .pswp__button--zoom),
+    :global(.pswp .pswp__button--zoom:hover) {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 24px 24px;
+    }
+
+    :global(.pswp:not(.pswp--zoom) .pswp__button--zoom) {
+        background-image: url("/Zoom-in.png");
+    }
+
+    :global(.pswp.pswp--zoomed-in .pswp__button--zoom) {
+        background-image: url("/Zoom-out.png");
+    }
+
+    :global(.pswp .pswp__button--arrow--prev),
+    :global(.pswp .pswp__button--arrow--prev:hover) {
+        background-image: url("/Prev.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 30px 30px;
+    }
+
+    :global(.pswp .pswp__button--arrow--next),
+    :global(.pswp .pswp__button--arrow--next:hover) {
+        background-image: url("/Next.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 30px 30px;
+    }
+
+    :global(.pswp .pswp__button--close .pswp__icn),
+    :global(.pswp .pswp__button--zoom .pswp__icn),
+    :global(.pswp .pswp__button--arrow .pswp__icn) {
+        display: none;
+    }
+
+</style>a
