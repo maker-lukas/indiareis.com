@@ -1,36 +1,109 @@
 ---
 interface Props {
-    images: { src: string; width: number; height: number; alt: string }[];
+    images: {
+        src: string;
+        width: number;
+        height: number;
+        alt: string;
+        category: string;
+    }[];
 }
+
 const { images } = Astro.props;
+const categories = [...new Set(images.map((image) => image.category))]
+    .filter((category) => category !== "uncatogarized")
+    .concat(images.some((image) => image.category === "uncatogarized") ? ["uncatogarized"] : []);
 ---
 
-<div class="gallery" data-photoswipe-gallery>
-    {images.map((img) => (
-        <a
-            href={img.src}
-            data-pswp-width={img.width}
-            data-pswp-height={img.height}
-        >
-            <img src={img.src} alt={img.alt} loading="lazy" />
-        </a>
-    ))}
+<div class="gallery-shell">
+    <div class="filters">
+        <label for="category-filter">Filter by style:</label>
+        <select class="hand" id="category-filter">
+            <option value="all">All styles</option>
+            {
+                categories.map((category) => (
+                    <option value={category}>{category}</option>
+                ))
+            }
+        </select>
+
+        <span class="gallery-count" aria-live="polite">
+            {images.length} artworks
+        </span>
+    </div>
+
+    <div class="gallery" data-photoswipe-gallery>
+        {
+            images.map((img) => (
+                <a
+                    href={img.src}
+                    data-category={img.category}
+                    data-pswp-width={img.width}
+                    data-pswp-height={img.height}
+                >
+                    <img src={img.src} alt={img.alt} loading="lazy" />
+                </a>
+            ))
+        }
+    </div>
 </div>
 
 <script>
-    import PhotoSwipeLightbox from 'photoswipe/lightbox';
+    import PhotoSwipeLightbox from "photoswipe/lightbox";
     import "photoswipe/style.css";
 
-    document.querySelectorAll<HTMLElement>("[data-photoswipe-gallery]").forEach((gallery) => {
-        const lightbox = new PhotoSwipeLightbox({
-            gallery,
-            children: "a",
-            padding: { top: 16, bottom: 16, left: 0, right: 0 },
-            pswpModule: () => import("photoswipe"),
-            secondaryZoomLevel: 1.5,
+    document
+        .querySelectorAll<HTMLElement>(".gallery-shell")
+        .forEach((shell) => {
+            const gallery = shell.querySelector<HTMLElement>(
+                "[data-photoswipe-gallery]",
+            );
+            const filter =
+                shell.querySelector<HTMLSelectElement>("#category-filter");
+            const count = shell.querySelector<HTMLElement>(".gallery-count");
+
+            if (!gallery || !filter) return;
+
+            const createLightbox = () => {
+                const lightbox = new PhotoSwipeLightbox({
+                    gallery,
+                    children: "a:not([hidden])",
+                    padding: { top: 16, bottom: 16, left: 0, right: 0 },
+                    pswpModule: () => import("photoswipe"),
+                    secondaryZoomLevel: 1,
+                });
+
+                lightbox.init();
+                return lightbox;
+            };
+
+            let lightbox = createLightbox();
+
+            filter.addEventListener("change", () => {
+                const selectedCategory = filter.value;
+                const links = gallery.querySelectorAll<HTMLAnchorElement>("a");
+                let visibleCount = 0;
+
+                links.forEach((link) => {
+                    const isVisible =
+                        selectedCategory === "all" ||
+                        link.dataset.category === selectedCategory;
+
+                    link.hidden = !isVisible;
+
+                    if (isVisible) {
+                        visibleCount += 1;
+                    }
+                });
+
+                if (count) {
+                    count.textContent = `${visibleCount} artwork${visibleCount === 1 ? "" : "s"}`;
+                }
+
+                lightbox.destroy();
+                lightbox = createLightbox();
+            });
         });
-        lightbox.init();
-    });
 </script>
 
 <style>
@@ -45,6 +118,11 @@ const { images } = Astro.props;
         break-inside: avoid;
         margin-bottom: 1rem;
     }
+
+    .gallery a[hidden] {
+        display: none;
+    }
+
     .gallery img {
         display: block;
         width: 100%;
@@ -95,4 +173,27 @@ const { images } = Astro.props;
         display: none;
     }
 
+    .filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        padding-inline: 1rem;
+    }
+
+    .hand {
+        padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+
+        line-height: 1.2;
+        border-width: 1px;
+        cursor: pointer;
+    }
+
+    .gallery-count {
+        margin-left: auto;
+        font-size: 0.85em;
+    }
 </style>
