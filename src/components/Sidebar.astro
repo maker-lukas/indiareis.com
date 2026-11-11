@@ -8,6 +8,7 @@
     </a>
     <a href="/">home</a>
     <a href="/test">test</a>
+    <a href="/about">about</a>
 </div>
 
 <style>
@@ -19,6 +20,7 @@
         top: 0;
         left: 0;
         overflow-x: hidden;
+        padding: 15px;
     }
 
     .hand a {
@@ -31,6 +33,22 @@
     .logo {
         width: 100%;
         height: auto;
+    }
+
+    @media (max-width: 700px) {
+        .hand {
+            width: 100%;
+            height: 80px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-around;
+            background-color: #6ca2d5;
+        }
+
+        .hand .logo {
+            width: 80px;
+        }
     }
 
 </style>

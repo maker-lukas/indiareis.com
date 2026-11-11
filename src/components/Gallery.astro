@@ -130,7 +130,7 @@ const categories = [...new Set(images.map((image) => image.category))]
     }
 
     :global(.pswp .pswp__button.pswp__button--close) {
-        background-image: url("/Close.png");
+        background-image: url("/assets/Close.png");
         background-position: center;
         background-repeat: no-repeat;
         background-size: 24px 24px;
@@ -144,16 +144,16 @@ const categories = [...new Set(images.map((image) => image.category))]
     }
 
     :global(.pswp:not(.pswp--zoom) .pswp__button--zoom) {
-        background-image: url("/Zoom-in.png");
+        background-image: url("/assets/Zoom-in.png");
     }
 
     :global(.pswp.pswp--zoomed-in .pswp__button--zoom) {
-        background-image: url("/Zoom-out.png");
+        background-image: url("/assets/Zoom-out.png");
     }
 
     :global(.pswp .pswp__button--arrow--prev),
     :global(.pswp .pswp__button--arrow--prev:hover) {
-        background-image: url("/Prev.png");
+        background-image: url("/assets/Prev.png");
         background-position: center;
         background-repeat: no-repeat;
         background-size: 30px 30px;
@@ -161,7 +161,7 @@ const categories = [...new Set(images.map((image) => image.category))]
 
     :global(.pswp .pswp__button--arrow--next),
     :global(.pswp .pswp__button--arrow--next:hover) {
-        background-image: url("/Next.png");
+        background-image: url("/assets/Next.png");
         background-position: center;
         background-repeat: no-repeat;
         background-size: 30px 30px;
@@ -190,10 +190,19 @@ const categories = [...new Set(images.map((image) => image.category))]
         line-height: 1.2;
         border-width: 1px;
         cursor: pointer;
+        border-image-source: url("/assets/Frame-small.png");
+        border-image-slice: 15 fill;
+        border-image-width: 6px;
     }
 
     .gallery-count {
         margin-left: auto;
         font-size: 0.85em;
+    }
+
+    @media (max-width: 700px) {
+        .gallery {
+            columns: 2;
+        }
     }
 </style>
