@@ -2,6 +2,7 @@
 interface Props {
     images: {
         src: string;
+        thumb?: string;
         width: number;
         height: number;
         alt: string;
@@ -11,8 +12,8 @@ interface Props {
 
 const { images } = Astro.props;
 const categories = [...new Set(images.map((image) => image.category))]
-    .filter((category) => category !== "uncatogarized")
-    .concat(images.some((image) => image.category === "uncatogarized") ? ["uncatogarized"] : []);
+    .filter((category) => category !== "uncategorized")
+    .concat(images.some((image) => image.category === "uncategorized") ? ["uncategorized"] : []);
 ---
 
 <div class="gallery-shell">
@@ -41,7 +42,7 @@ const categories = [...new Set(images.map((image) => image.category))]
                     data-pswp-width={img.width}
                     data-pswp-height={img.height}
                 >
-                    <img src={img.src} alt={img.alt} loading="lazy" />
+                    <img src={img.thumb ?? img.src} alt={img.alt} loading="lazy" />
                 </a>
             ))
         }
