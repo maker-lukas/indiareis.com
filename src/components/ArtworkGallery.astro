@@ -10,12 +10,13 @@ const { artworks } = Astro.props;
 ---
 
 <Gallery
-  images={artworks.map(({ image, thumb, width, height, alt, category }) => ({
+  images={artworks.map(({ image, thumb, width, height, alt, category, categoryLabel }) => ({
     src: image,
     thumb,
     width,
     height,
     alt,
     category,
+    categoryLabel,
   }))}
 />

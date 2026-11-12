@@ -7,13 +7,18 @@ interface Props {
         height: number;
         alt: string;
         category: string;
+        categoryLabel: string;
     }[];
 }
 
 const { images } = Astro.props;
-const categories = [...new Set(images.map((image) => image.category))]
-    .filter((category) => category !== "uncategorized")
-    .concat(images.some((image) => image.category === "uncategorized") ? ["uncategorized"] : []);
+const categories = [...new Map(
+    images.map(({ category, categoryLabel }) => [category, { value: category, label: categoryLabel }]),
+).values()]
+    .filter(({ value }) => value !== "uncategorized")
+    .concat(images.some((image) => image.category === "uncategorized")
+        ? [{ value: "uncategorized", label: "Uncategorized" }]
+        : []);
 ---
 
 <div class="gallery-shell">
@@ -23,7 +28,7 @@ const categories = [...new Set(images.map((image) => image.category))]
             <option value="all">All styles</option>
             {
                 categories.map((category) => (
-                    <option value={category}>{category}</option>
+                    <option value={category.value}>{category.label}</option>
                 ))
             }
         </select>

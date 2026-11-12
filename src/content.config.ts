@@ -13,4 +13,11 @@ const artworks = defineCollection({
     }),
 });
 
-export const collections = { artworks };
+const styles = defineCollection({
+    loader: glob({ pattern: '**/*.json', base: './src/content/styles' }),
+    schema: z.object({
+        title: z.string(),
+    }),
+});
+
+export const collections = { artworks, styles };

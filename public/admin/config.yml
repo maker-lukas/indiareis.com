@@ -8,6 +8,19 @@ media_folder: src/assets/artworks
 public_folder: /assets/artworks
 
 collections:
+  - name: styles
+    label: Styles
+    label_singular: Style
+    folder: src/content/styles
+    extension: json
+    format: json
+    create: true
+    delete: false
+    slug: '{{title}}'
+    identifier_field: title
+    fields:
+      - { name: title, label: Style name, widget: string }
+
   - name: artworks
     label: Artworks
     folder: src/content/artworks
@@ -21,6 +34,14 @@ collections:
     fields:
       - { name: title, label: Title, widget: string, required: false }
       - { name: image, label: Image, widget: image }
-      - { name: category, label: Type, widget: select, options: [Pencil, Ballpoint, Charcoal, Ink], default: Pencil }
+      - name: category
+        label: Style
+        widget: relation
+        collection: styles
+        value_field: '{{slug}}'
+        display_fields: [title]
+        search_fields: [title]
+        default: uncategorized
+        required: true
       - { name: year, label: Year, widget: number, value_type: int, default: 2026 }
       - { name: description, label: Description, widget: text, required: false }

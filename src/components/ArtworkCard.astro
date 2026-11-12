@@ -12,6 +12,6 @@ const { artwork } = Astro.props;
     <article>
         <img src={artwork.image} alt={artwork.alt} loading="lazy" />
         <p>{artwork.title}</p>
-        <p>{artwork.category} · {artwork.year}</p>
+        <p>{artwork.categoryLabel} · {artwork.year}</p>
     </article>
 </li>
