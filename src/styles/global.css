@@ -9,22 +9,41 @@
   padding: 0;
 }
 
-input:focus, select:focus {
-  outline: none;
+.hand-frame {
+  margin: 0;
+  border-style: solid;
+  border-color: transparent;
+  border-image-repeat: stretch;
+  background-color: transparent;
 }
 
-.hand {
-  appearance: none;
-  margin: 0;
-  padding: 0;
-  border: 8px solid transparent;
+.hand-frame--large {
+  border-width: 8px;
   border-image-source: url("/assets/frame.png");
   border-image-slice: 15 fill;
   border-image-width: 15px;
-  border-image-repeat: stretch;
-  background: transparent;
+}
 
+.hand-frame--small {
+  border-width: 1px;
+  border-image-source: url("/assets/Frame-small.png");
+  border-image-slice: 15 fill;
+  border-image-width: 6px;
+}
+
+.hand-control {
+  appearance: none;
+  color: inherit;
+  font: inherit;
+}
+
+.hand-button {
   transition: transform 100ms ease;
+}
+
+:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
 }
 
 body {
@@ -37,8 +56,14 @@ main {
   margin-left: 200px;
 }
 
-button.hand:active {
+.hand-button:active {
   transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hand-button {
+    transition: none;
+  }
 }
 
 @media (max-width: 700px) {

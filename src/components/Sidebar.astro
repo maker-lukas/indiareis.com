@@ -2,7 +2,7 @@
 
 ---
 
-<div class="hand">
+<div class="sidebar hand-frame hand-frame--large">
     <a href="/">
         <img class="logo" src="/unicorn.png" />
     </a>
@@ -12,7 +12,7 @@
 </div>
 
 <style>
-    .hand {
+    .sidebar {
         height: 100%;
         width: 200px;
         position: fixed;
@@ -23,7 +23,7 @@
         padding: 15px;
     }
 
-    .hand a {
+    .sidebar a {
         display: block;
         color: white;
         text-decoration: none;
@@ -36,7 +36,7 @@
     }
 
     @media (max-width: 700px) {
-        .hand {
+        .sidebar {
             width: 100%;
             height: 80px;
             display: flex;
@@ -46,7 +46,7 @@
             background-color: #6ca2d5;
         }
 
-        .hand .logo {
+        .sidebar .logo {
             width: 80px;
         }
     }

@@ -1,17 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const birthDate = new Date(2014, 6, 8);
+const today = new Date();
+const birthdayHasPassed =
+    today.getMonth() > birthDate.getMonth() ||
+    (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
+const age = today.getFullYear() - birthDate.getFullYear() - (birthdayHasPassed ? 0 : 1);
 ---
 
 <Layout title="About">
 
     <h2>Hey, I'm India!</h2>
-    <p>I'm a 12 year old artist and I express a lot through my art.</p>
+    <p>I'm a {age} year old artist.</p>
     <p></p>
 
 </Layout>
 
 <style>
 
-    
+
 
 </style>

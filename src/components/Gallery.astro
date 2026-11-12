@@ -18,7 +18,7 @@ const categories = [...new Set(images.map((image) => image.category))]
 <div class="gallery-shell">
     <div class="filters">
         <label for="category-filter">Filter by style:</label>
-        <select class="hand" id="category-filter">
+        <select class="hand-frame hand-frame--small hand-control filter-control" id="category-filter">
             <option value="all">All styles</option>
             {
                 categories.map((category) => (
@@ -181,18 +181,14 @@ const categories = [...new Set(images.map((image) => image.category))]
         padding-inline: 1rem;
     }
 
-    .hand {
+    .filter-control {
         padding: 0.2rem 0.6rem 0.2rem 0.6rem;
-        background: transparent;
-        color: inherit;
-        font: inherit;
-
         line-height: 1.2;
-        border-width: 1px;
         cursor: pointer;
-        border-image-source: url("/assets/Frame-small.png");
-        border-image-slice: 15 fill;
-        border-image-width: 6px;
+        padding-right: 2rem;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='m1 1 5 5 5-5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E");
+        background-position: right 0.65rem center;
+        background-repeat: no-repeat;
     }
 
     .gallery-count {
