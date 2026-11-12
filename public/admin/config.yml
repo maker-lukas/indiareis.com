@@ -4,6 +4,9 @@ backend:
   branch: main
   base_url: https://sveltia-cms-auth.itslukasreis.workers.dev
 
+media_folder: src/assets/artworks
+public_folder: /assets/artworks
+
 collections:
   - name: artworks
     label: Artworks
