@@ -1,7 +1,7 @@
 backend:
   name: github
   repo: maker-lukas/indiareis.com
-  branch: main
+  branch: master
   base_url: https://sveltia-cms-auth.itslukasreis.workers.dev
 
 media_folder: src/assets/artworks
