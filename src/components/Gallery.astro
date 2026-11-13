@@ -23,7 +23,7 @@ const categories = [...new Map(
 
 <div class="gallery-shell">
     <div class="filters">
-        <label for="category-filter">Filter by style:</label>
+        <label for="category-filter" for="category-filter">Filter by style:</label>
         <select class="hand-frame hand-frame--small hand-control filter-control" id="category-filter">
             <option value="all">All styles</option>
             {
@@ -180,11 +180,12 @@ const categories = [...new Map(
     }
 
     .filters {
+        font-size: 0.9em;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         gap: 0.5rem;
-        padding-inline: 1rem;
+        padding: 1rem;
     }
 
     .filter-control {
@@ -206,5 +207,33 @@ const categories = [...new Map(
         .gallery {
             columns: 2;
         }
+
+        .filters {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            row-gap: 0.5rem;
+            padding: 0.75rem 0.75rem 0;
+        }
+
+        .filter-label {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .filter-control {
+            grid-column: 1 / -1;
+            grid-row: 2;
+            width: 100%;
+            min-height: 48px;
+            padding-inline: 0.75rem 2rem;
+        }
+
+        .gallery-count {
+            grid-column: 2;
+            grid-row: 1;
+            margin-left: 0;
+            text-align: right;
+        }
+
     }
 </style>

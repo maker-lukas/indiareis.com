@@ -41,11 +41,6 @@
   transition: transform 100ms ease;
 }
 
-:focus-visible {
-  outline: 3px solid white;
-  outline-offset: 3px;
-}
-
 body {
   background-color: #6ca2d5;
   font-family: "Stefan";
@@ -53,7 +48,7 @@ body {
 }
 
 main {
-  margin-left: 200px;
+  margin-left: 250px;
 }
 
 .hand-button:active {
