@@ -43,5 +43,5 @@ collections:
         search_fields: [title]
         default: uncategorized
         required: true
-      - { name: year, label: Year, widget: number, value_type: int, default: 2026 }
+      - { name: year, label: Year, widget: number, value_type: int, default: 2026, required: false }
       - { name: description, label: Description, widget: text, required: false }

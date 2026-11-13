@@ -1,24 +1,164 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 
 const birthDate = new Date(2014, 6, 8);
 const today = new Date();
 const birthdayHasPassed =
     today.getMonth() > birthDate.getMonth() ||
-    (today.getMonth() === birthDate.getMonth() && today.getDate() >= birthDate.getDate());
-const age = today.getFullYear() - birthDate.getFullYear() - (birthdayHasPassed ? 0 : 1);
+    (today.getMonth() === birthDate.getMonth() &&
+        today.getDate() >= birthDate.getDate());
+const age =
+    today.getFullYear() - birthDate.getFullYear() - (birthdayHasPassed ? 0 : 1);
 ---
 
 <Layout title="About">
+    <section class="about">
+        <div>
+            <h1>Hey, I'm India!</h1>
+            <p>
+                I've been drawing all my life, and I started photography at 11.
+                This website is a way for me to keep my drawings and photos
+                safe. I've already lost many of them, so I hope I don't lose the
+                ones I have. This website is also a place where I can share my
+                drawings with people all around the world and, hopefully,
+                inspire others. Thanks to my sibling :3c. Here's my siblings'
+                websites:
+            </p>
+        </div>
+    </section>
 
-    <h2>Hey, I'm India!</h2>
-    <p>I'm a {age} year old artist.</p>
-    <p></p>
-
+    <section class="gear" aria-labelledby="gear-title">
+        <h2 id="gear-title">My favorite drawing gear</h2>
+        <ul class="gear-list">
+            <li class="gear-item" tabindex="0">
+                <figure>
+                    <img
+                        class="gear-image"
+                        draggable="false"
+                        src="/ballpoint.png"
+                        alt="Black ballpoint pen"
+                    />
+                    <figcaption class="gear-label hand-frame hand-frame--small">Ballpoint pen</figcaption>
+                </figure>
+            </li>
+            <li class="gear-item" tabindex="0">
+                <figure>
+                    <img
+                        class="gear-image"
+                        draggable="false"
+                        src="/ballpoint.png"
+                        alt="Black ballpoint pen"
+                    />
+                    <figcaption class="gear-label hand-frame hand-frame--small">Ballpoint pen</figcaption>
+                </figure>
+            </li>
+        </ul>
+    </section>
 </Layout>
 
 <style>
+    .about {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 2rem;
+        max-width: 900px;
+        margin: 3rem auto;
+        padding: 1rem;
+    }
 
+    .about h1 {
+        margin-bottom: 0.75rem;
+        font-size: 2.5rem;
+    }
 
+    .gear {
+        max-width: 900px;
+        margin: 0 auto 3rem;
+        padding: 1rem;
+        text-align: center;
+    }
 
+    .gear h2 {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+    }
+
+    .gear-list {
+        display: grid;
+        grid-template-columns: repeat(
+            auto-fit,
+            minmax(min(100%, 180px), 220px)
+        );
+        justify-content: center;
+        align-items: start;
+        gap: 1rem;
+        list-style: none;
+    }
+
+    .gear-item {
+        width: min(100%, 220px);
+        padding: 0.75rem;
+        border-radius: 1rem;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .gear-item:focus-visible {
+        outline: 3px solid currentColor;
+        outline-offset: 4px;
+    }
+
+    .gear-item figure {
+        position: relative;
+        display: grid;
+        min-height: 280px;
+        place-items: center;
+    }
+
+    .gear-image {
+        display: block;
+        width: 100%;
+        height: 260px;
+        object-fit: contain;
+        transform: rotate(-3deg);
+        transition: transform 250ms ease;
+        user-select: none;
+    }
+
+    .gear-label {
+        position: absolute;
+        right: 0;
+        bottom: 0.25rem;
+        left: 0;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 0.35rem 0.75rem;
+        background: linear-gradient(#17212dcc, #17212dcc) 3px 3px /
+            calc(100% - 6px) calc(100% - 6px) no-repeat;
+        color: white;
+        opacity: 0;
+        transform: translateY(0.35rem);
+        transition:
+            opacity 200ms ease,
+            transform 200ms ease;
+        pointer-events: none;
+    }
+
+    .gear-item:hover .gear-image,
+    .gear-item:focus-visible .gear-image {
+        transform: scale(1.08) rotate(5deg);
+    }
+
+    .gear-item:hover .gear-label,
+    .gear-item:focus-visible .gear-label {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 700px) {
+        .about {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
