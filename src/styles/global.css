@@ -9,6 +9,12 @@
   padding: 0;
 }
 
+*,
+*::before,
+*::after {
+  cursor: url("/assets/cursor-30.png") 12 1, auto !important;
+}
+
 .hand-frame {
   margin: 0;
   border-style: solid;
@@ -29,6 +35,13 @@
   border-image-source: url("/assets/Frame-small.png");
   border-image-slice: 15 fill;
   border-image-width: 6px;
+}
+
+.hand-frame--exp {
+  border-width: 20px 7px 20px 20px;
+  border-image-source: url("/assets/frame-exp-cropped.svg");
+  border-image-slice: 23 8 23 23 fill;
+  border-image-width: 20px 7px 20px 20px;
 }
 
 .hand-control {

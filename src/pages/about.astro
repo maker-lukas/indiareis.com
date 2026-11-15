@@ -25,6 +25,11 @@ const age =
                 websites:
             </p>
         </div>
+
+        <div class="about-portrait-wrap">
+            <img class="about-portrait" draggable="false" src="assets/portrait.png" alt="Portrait of India" />
+        </div>
+
     </section>
 
     <section class="gear" aria-labelledby="gear-title">
@@ -70,6 +75,20 @@ const age =
     .about h1 {
         margin-bottom: 0.75rem;
         font-size: 2.5rem;
+    }
+
+    .about-portrait-wrap {
+        display: grid;
+        justify-items: center;
+    }
+
+    .about-portrait {
+        display: block;
+        width: min(100%, 200px);
+        height: auto;
+        object-fit: contain;
+        transform: rotate(2deg);
+        user-select: none;
     }
 
     .gear {
