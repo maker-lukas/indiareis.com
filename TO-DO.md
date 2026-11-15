@@ -4,10 +4,10 @@ Draw:
 - next / previous arrow
 - zoom in / out icons
 - drop down arrow
-- self portrait for about page
+- ~~self portrait for about page~~
 - backgrounds
 - icon for sidebar
 - draw favorite gear eg: pens, eraser, paper, anything
 - stuff to sprinckle around the website like stars, hearts, etc
-- cunfused person for 404 not found page
-- cursor
+- ~~cunfused person for 404 not found page~~
+- ~~cursor~~

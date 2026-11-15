@@ -15,4 +15,4 @@ The artworks are realy old ones because its the only ones i had access right now
 - About page with self portrait and favorite gear (WIP)
 - Hand drawn assets (only some started adding but realized the colors and some other stuff has to change so its kinda in the middle)
 
-Made by Lukas with <3
+Made by Lukas with <3 in Astro
